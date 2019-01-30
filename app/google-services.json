@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "531084105760",
+    "firebase_url": "https://ecommercefirebase-c9c78.firebaseio.com",
+    "project_id": "ecommercefirebase-c9c78",
+    "storage_bucket": "ecommercefirebase-c9c78.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:531084105760:android:974e964a19ce0e7e",
+        "android_client_info": {
+          "package_name": "com.cuncisboss.ecommercefirebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "531084105760-j20rb3f0pe91dsch8n5euf0m4t75hjvk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.cuncisboss.ecommercefirebase",
+            "certificate_hash": "ca357666d1a1b50ef8795b22848b219dc87b52a9"
+          }
+        },
+        {
+          "client_id": "531084105760-npthdd6nhbdknchoik7aii3ip4qld6hn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCUG068Ub0V39IXBy2kUFR4CBXxSlLQxHs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "531084105760-npthdd6nhbdknchoik7aii3ip4qld6hn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
