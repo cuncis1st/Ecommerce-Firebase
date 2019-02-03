@@ -1,7 +1,9 @@
 package com.cuncisboss.ecommercefirebase;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
@@ -15,5 +17,19 @@ public class MainActivity extends AppCompatActivity {
 
         btnLogin = findViewById(R.id.btn_main_login);
         btnRegister = findViewById(R.id.btn_main_register);
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(i);
+            }
+        });
+        btnRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, RegisterActivity.class);
+                startActivity(i);
+            }
+        });
     }
 }

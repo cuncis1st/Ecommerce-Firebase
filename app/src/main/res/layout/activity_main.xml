@@ -33,7 +33,7 @@
         android:id="@+id/btn_main_login"
         android:layout_alignParentBottom="true"
         android:background="@drawable/button_design"
-        android:text="@string/login"
+        android:text="@string/login_desc"
         android:layout_margin="8dp"
         android:textColor="@android:color/white"
         android:textSize="18sp"
