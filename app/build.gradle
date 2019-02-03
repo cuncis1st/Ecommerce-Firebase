@@ -32,6 +32,8 @@ dependencies {
 
     implementation 'com.google.firebase:firebase-core:16.0.7'
     implementation 'com.google.firebase:firebase-database:16.0.6'
+
+    implementation 'io.paperdb:paperdb:2.6'
 }
 
 apply plugin: 'com.google.gms.google-services'

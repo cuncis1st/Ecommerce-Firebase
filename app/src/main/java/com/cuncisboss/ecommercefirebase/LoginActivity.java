@@ -12,11 +12,15 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.cuncisboss.ecommercefirebase.model.User;
+import com.cuncisboss.ecommercefirebase.prevalent.Prevalent;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.rey.material.widget.CheckBox;
+
+import io.paperdb.Paper;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -25,16 +29,20 @@ public class LoginActivity extends AppCompatActivity {
     ProgressDialog loadingBar;
 
     private String parentDbName = "Users";
+    private CheckBox cb_rememberMe;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        Paper.init(this);
 
         etPhone = findViewById(R.id.et_phone_number_input);
         etPassword = findViewById(R.id.et_password_input);
         btnLogin = findViewById(R.id.btn_login);
         loadingBar = new ProgressDialog(this);
+
+        cb_rememberMe = findViewById(R.id.remember_me_checkbox);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,6 +71,11 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void allowAccessToAccount(final String phone, final String password) {
+        if (cb_rememberMe.isChecked()) {
+            Paper.book().write(Prevalent.UserPhoneKey, phone);
+            Paper.book().write(Prevalent.UserPasswordKey, password);
+        }
+
         final DatabaseReference rootRef;
         rootRef = FirebaseDatabase.getInstance().getReference();
 
