@@ -11,4 +11,9 @@
     <string name="i_m_not_admin">I\'m not Admin?</string>
     <string name="name">Name</string>
     <string name="create_account">Create Account</string>
+    <string name="add_new_product">Add new Product</string>
+    <string name="product_name">Product Name...</string>
+    <string name="product_descriptions">Product Descriptions</string>
+    <string name="product_price">Product Price</string>
+    <string name="add_product">Add Product</string>
 </resources>
