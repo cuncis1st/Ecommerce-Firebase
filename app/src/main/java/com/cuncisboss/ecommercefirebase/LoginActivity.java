@@ -123,6 +123,7 @@ public class LoginActivity extends AppCompatActivity {
                                 loadingBar.dismiss();
 
                                 Intent i = new Intent(LoginActivity.this, HomeActivity.class);
+                                Prevalent.currentOnlineUser = usersData;
                                 startActivity(i);
                             }
                         } else {
