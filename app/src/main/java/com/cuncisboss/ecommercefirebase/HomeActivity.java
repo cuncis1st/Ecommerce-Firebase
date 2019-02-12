@@ -5,14 +5,14 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -70,9 +70,10 @@ public class HomeActivity extends AppCompatActivity
 
         View headerView = navigationView.getHeaderView(0);
         TextView tvUsername = headerView.findViewById(R.id.user_profile_name);
-        CircleImageView tvProfile = headerView.findViewById(R.id.user_profile_image);
+        CircleImageView profileImage = headerView.findViewById(R.id.user_profile_image);
 
         tvUsername.setText(Prevalent.currentOnlineUser.getName());
+        Picasso.get().load(Prevalent.currentOnlineUser.getImage()).placeholder(R.drawable.profile).into(profileImage);
 
         recyclerView = findViewById(R.id.recyclerview);
         recyclerView.setHasFixedSize(true);
@@ -151,7 +152,8 @@ public class HomeActivity extends AppCompatActivity
         } else if (id == R.id.nav_categories) {
 
         } else if (id == R.id.nav_settings) {
-
+            Intent i = new Intent(HomeActivity.this, SettingsActivity.class);
+            startActivity(i);
         } else if (id == R.id.nav_logout) {
             Intent i = new Intent(HomeActivity.this, MainActivity.class);
             i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
