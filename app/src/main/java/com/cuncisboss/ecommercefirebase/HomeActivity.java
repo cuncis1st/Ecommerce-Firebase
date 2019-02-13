@@ -91,11 +91,20 @@ public class HomeActivity extends AppCompatActivity
 
         FirebaseRecyclerAdapter<Product, ProductViewHolder> adapter = new FirebaseRecyclerAdapter<Product, ProductViewHolder>(options) {
             @Override
-            protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull Product model) {
+            protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull final Product model) {
                 holder.tvProductName.setText(model.getPname());
                 holder.tvProductDesc.setText(model.getDescription());
                 holder.tvProductPrice.setText("Rp. " + model.getPrice() + ",-");
                 Picasso.get().load(model.getImage()).into(holder.imgProduct);
+
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent i = new Intent(HomeActivity.this, ProductDetailsActivity.class);
+                        i.putExtra("pid", model.getPid());
+                        startActivity(i);
+                    }
+                });
             }
 
             @NonNull
