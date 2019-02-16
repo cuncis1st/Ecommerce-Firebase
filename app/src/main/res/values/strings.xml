@@ -36,4 +36,10 @@
     <string name="total_price">Total Price =</string>
     <string name="next">Next</string>
     <string name="product_quantity">Product Quantity</string>
+    <string name="title_shipment_details">Please write your Shipment Details</string>
+    <string name="your_name">Your Name</string>
+    <string name="your_phone_number">Your Phone Number</string>
+    <string name="your_home_address">Your Home Address</string>
+    <string name="your_city_name">Your City Name</string>
+    <string name="confirm">Confirm</string>
 </resources>
