@@ -32,7 +32,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
     private ImageView imgProductDetail;
     private ElegantNumberButton btnNumber;
     private TextView tvProductName, tvProductDesc, tvPorductPrice;
-    private String productID = "";
+    private String productID = "", state = "Normal";
     private Button btnAddToCart;
 
     @Override
@@ -54,7 +54,12 @@ public class ProductDetailsActivity extends AppCompatActivity {
         btnAddToCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addingToCart();
+                if (state.equals("Order Placed") || state.equals("Order Shipped")) {
+                    Toast.makeText(ProductDetailsActivity.this, "You can add purchase more products, once your order is shipped or confirmed.", Toast.LENGTH_LONG).show();
+                } else {
+                    addingToCart();
+
+                }
             }
         });
 
@@ -118,6 +123,36 @@ public class ProductDetailsActivity extends AppCompatActivity {
                     tvProductDesc.setText(products.getDescription());
                     tvPorductPrice.setText(products.getPrice());
                     Picasso.get().load(products.getImage()).into(imgProductDetail);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        checkOrderState();
+    }
+
+    private void checkOrderState() {
+        DatabaseReference ordersRef = FirebaseDatabase.getInstance().getReference().child("Orders").child(Prevalent.currentOnlineUser.getPhone());
+
+        ordersRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    String shippingState = dataSnapshot.child("state").getValue().toString();
+
+                    if (shippingState.equals("shipped")) {
+                        state = "Order Shipped";
+                    } else if (shippingState.equals("not shipped")) {
+                        state = "Order Placed";
+                    }
                 }
             }
 

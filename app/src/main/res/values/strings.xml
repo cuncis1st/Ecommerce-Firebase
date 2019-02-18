@@ -42,4 +42,12 @@
     <string name="your_home_address">Your Home Address</string>
     <string name="your_city_name">Your City Name</string>
     <string name="confirm">Confirm</string>
+    <string name="cart_description">Congratulations, your final order has been placed successfully. Soon it will be verified.</string>
+    <string name="check_new_order">Check New Orders</string>
+    <string name="new_orders">New Orders</string>
+    <string name="username">Username</string>
+    <string name="total_price2">Total Price</string>
+    <string name="address_city">Address, City</string>
+    <string name="date_time">Date Time</string>
+    <string name="show_this_order_products">Show this order products</string>
 </resources>

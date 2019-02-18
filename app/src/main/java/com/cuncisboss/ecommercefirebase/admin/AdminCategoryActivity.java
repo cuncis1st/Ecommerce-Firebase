@@ -4,8 +4,10 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
+import com.cuncisboss.ecommercefirebase.MainActivity;
 import com.cuncisboss.ecommercefirebase.R;
 
 public class AdminCategoryActivity extends AppCompatActivity {
@@ -14,16 +16,39 @@ public class AdminCategoryActivity extends AppCompatActivity {
     private ImageView imgGlasses, imgPursesBags, imgHats, imgShoes;
     private ImageView imgHeadphoness, imgLaptops, imgWatches, imgMobiles;
 
+    private Button btnLogout, btnCheckNewOrder;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_category);
 
         initView();
+        initListener();
 
         rowOne();
         rowTwo();
         rowThree();
+    }
+
+    private void initListener() {
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(AdminCategoryActivity.this, MainActivity.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(i);
+                finish();
+            }
+        });
+
+        btnCheckNewOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(AdminCategoryActivity.this, AdminNewOrderActivity.class);
+                startActivity(i);
+            }
+        });
     }
 
     private void initView() {
@@ -41,6 +66,9 @@ public class AdminCategoryActivity extends AppCompatActivity {
         imgLaptops = findViewById(R.id.img_laptops);
         imgWatches = findViewById(R.id.img_watches);
         imgMobiles = findViewById(R.id.img_mobiles);
+
+        btnLogout = findViewById(R.id.btn_admin_logout);
+        btnCheckNewOrder = findViewById(R.id.btn_check_order);
     }
 
     private void rowOne() {

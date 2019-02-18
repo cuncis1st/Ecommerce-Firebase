@@ -165,6 +165,7 @@ public class HomeActivity extends AppCompatActivity
             Intent i = new Intent(HomeActivity.this, SettingsActivity.class);
             startActivity(i);
         } else if (id == R.id.nav_logout) {
+            Paper.book().destroy();
             Intent i = new Intent(HomeActivity.this, MainActivity.class);
             i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(i);
