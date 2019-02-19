@@ -50,4 +50,5 @@
     <string name="address_city">Address, City</string>
     <string name="date_time">Date Time</string>
     <string name="show_this_order_products">Show this order products</string>
+    <string name="products">Products</string>
 </resources>

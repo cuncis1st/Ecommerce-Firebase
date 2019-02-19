@@ -1,6 +1,9 @@
 package com.cuncisboss.ecommercefirebase.admin;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -46,12 +49,49 @@ public class AdminNewOrderActivity extends AppCompatActivity {
         FirebaseRecyclerAdapter<AdminOrder, AdminOrdersViewHolder> adapter =
                 new FirebaseRecyclerAdapter<AdminOrder, AdminOrdersViewHolder>(options) {
                     @Override
-                    protected void onBindViewHolder(@NonNull AdminOrdersViewHolder holder, int position, @NonNull AdminOrder model) {
+                    protected void onBindViewHolder(@NonNull AdminOrdersViewHolder holder, final int position, @NonNull final AdminOrder model) {
                         holder.userName.setText("Name: " + model.getName());
                         holder.userPhoneNumber.setText("Phone: " + model.getPhone());
                         holder.userTotalPrice.setText("Total Amount = Rp." + model.getTotalAmount());
                         holder.userDateTime.setText("Order at: " + model.getDate() + " " + model.getTime());
                         holder.userShippingAddress.setText("Shipping Address: " + model.getAddress() + ", " + model.getCity());
+                        holder.btnShowOrders.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                String uID = getRef(position).getKey();
+
+                                Intent i = new Intent(AdminNewOrderActivity.this, AdminUserProductActivity.class);
+                                i.putExtra("KEY_UID", uID);
+                                startActivity(i);
+                            }
+                        });
+                        holder.itemView.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                CharSequence[] options = new CharSequence[]{
+                                        "Yes",
+                                        "No"
+                                };
+
+                                AlertDialog.Builder builder = new AlertDialog.Builder(AdminNewOrderActivity.this);
+                                builder.setTitle("Have you shipped this order products ?");
+
+                                builder.setItems(options, new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        if (which == 0) {
+                                            String uID = getRef(position).getKey();
+
+                                            removeOrder(uID);
+                                        } else {
+                                            finish();
+                                        }
+                                    }
+                                });
+
+                                builder.show();
+                            }
+                        });
                     }
 
                     @NonNull
@@ -66,6 +106,10 @@ public class AdminNewOrderActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         adapter.startListening();
 
+    }
+
+    private void removeOrder(String uID) {
+        ordersRef.child(uID).removeValue();
     }
 
 
